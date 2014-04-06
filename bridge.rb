@@ -1,6 +1,5 @@
 require_relative 'pack.rb'
 require_relative 'player.rb'
-require_relative 'dealer.rb'
 
 pack = Pack.new
 

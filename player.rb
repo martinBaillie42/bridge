@@ -1,11 +1,23 @@
-# each player can have a number of cards
-# each player is called north south east west
-# any player can be the dealer
+# Each player can have a number of cards. Each player is called north south east west.
+# Each player can be the dealer
 class Player
-    attr_accessor :hand, :leader, :lead_card
-    attr :play_card, :name
 
-    def initialize(name)
+    # the cards the player holds
+    attr_accessor :hand
+
+    # is the player the leader
+    attr_accessor :leader
+
+    # if the player is the leader, this is the card they lead with
+    attr_accessor :lead_card
+
+    # the card the player plays
+    attr :play_card
+
+    # the name of the player (north, south, east, west)
+    attr :name
+
+    def initialize(name) #:notnew:
         @hand = []
         @lead_card
         @play_card
@@ -13,16 +25,26 @@ class Player
         @name = name
     end
 
+    # Rearranges the pack into a random order.
+    #
+    # ==== Attributes
+    #
+    # * +pack+ The pack object, containing all the cards.
     def shuffle(pack)
         pack.shuffle
     end
 
+    # Assigns a card to each player i turn. The pack is dealt in order.
+    #
+    # ==== Attributes
+    #
+    # * +pack+ The pack object, containing all the cards.
+    # * +players+ An array of players.
     def deal(pack, players)
         cards = pack.cards
 
         player_counter = 0
 
-        #  use pop for transferring from pack to players!
         (0..cards.length - 1).each { |i|
             players[player_counter].hand.push(cards[i])
             player_counter = (player_counter + 1) % 4
@@ -30,16 +52,18 @@ class Player
 
     end
 
+    # If the player is leading the Trick, this plays their lead card
     def lead
         @lead_card = @hand.pop
     end
 
+    # Decides which card the player will play in response to the lead card.
+    #
+    # ==== Attributes
+    #
+    # * +leading_card+ The card the first player led with.
+    # * +players+ An array of players.
     def play(leading_card, players)
-        # this can be refactored and the logic improved
-        # no need for 'lead_card' - leader does this instead. Remove
-        # rename play_card to current_card
-        # rename leader to has_highest_card
-        # puts "hand.length #{@hand.length}"
 
         (0..@hand.length - 1).each { |i|
             @play_card = @hand[i]
