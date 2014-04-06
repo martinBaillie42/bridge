@@ -1,11 +1,11 @@
 #
 class Card
 
-	attr :number, :suit
+    attr :number, :suit
 
-	def initialize(number, suit)
-		@number = number
-		@suit = suit
-	end
+    def initialize(number, suit)
+        @number = number
+        @suit = suit
+    end
 
 end
