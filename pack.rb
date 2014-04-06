@@ -26,8 +26,7 @@ class Pack
     end
 
     def card_number
-        number = (@card_counter % 13) + 1
-        number
+        (@card_counter % 13) + 1
     end
 
     def card_suit

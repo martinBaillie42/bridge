@@ -23,10 +23,10 @@ class Player
         player_counter = 0
 
         #  use pop for transferring from pack to players!
-        for i in 0..cards.length - 1
+        (0..cards.length - 1).each { |i|
             players[player_counter].hand.push(cards[i])
             player_counter = (player_counter + 1) % 4
-        end
+        }
 
     end
 
@@ -41,7 +41,7 @@ class Player
         # rename leader to has_highest_card
         # puts "hand.length #{@hand.length}"
 
-        for i in 0..@hand.length - 1
+        (0..@hand.length - 1).each { |i|
             @play_card = @hand[i]
             if @play_card.suit == leading_card.suit and @play_card.number > leading_card.number
                 players[players.index { |player| player.leader }].leader = false
@@ -51,15 +51,15 @@ class Player
                 @hand.delete_at(i)
                 return @play_card
             end
-        end
+        }
 
-        for i in 0..@hand.length - 1
+        (0..@hand.length - 1).each { |i|
             @play_card = @hand[i]
             if @play_card.suit == leading_card.suit
                 @hand.delete_at(i)
                 return @play_card
             end
-        end
+        }
 
         @play_card = @hand.pop
 
